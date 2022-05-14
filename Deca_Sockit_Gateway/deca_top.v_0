@@ -1,0 +1,71 @@
+/*
+A clock divider in Verilog
+*/
+
+module deca_top(
+  //input MAX10_CLK1_50,
+
+  /////  IO DECA
+
+  // PS2
+  inout wire	PS2_KEYBOARD_CLK,
+  inout wire	PS2_KEYBOARD_DAT,
+  inout wire	PS2_MOUSE_CLK,
+  inout wire	PS2_MOUSE_DAT,
+
+  // UART
+  input  wire UART_RXD,
+  output wire	UART_TXD,
+  
+  // JOYSTICK
+	input wire  JOY1_B2_P9,
+	input wire  JOY1_B1_P6,
+	input wire  JOY1_UP,
+	input wire  JOY1_DOWN,
+	input wire  JOY1_LEFT,
+	input wire  JOY1_RIGHT,
+	output wire JOYX_SEL_O,
+
+  //Pmod MicroSD
+  inout [7:0]  PMOD1,     
+
+
+  /////  IO SOCKIT
+  inout [43:0] GPIO0_D    //Signal interface with SOCKIT board
+);
+
+
+assign GPIO0_D[4]  = PS2_KEYBOARD_CLK;  //HSMC_CLKIN_n1 PIN_AB27
+assign GPIO0_D[5]  = PS2_KEYBOARD_DAT;  //HSMC_RX _n[7] PIN_F8 
+assign GPIO0_D[6]  = PS2_MOUSE_CLK;     //HSMC_CLKIN_p1 PIN_AA26
+assign GPIO0_D[7]  = PS2_MOUSE_DAT;     //HSMC_RX _p[7] PIN_F9
+assign GPIO0_D[8]  = UART_RXD;          //HSMC_TX _n[7] PIN_B3
+assign GPIO0_D[9]  = UART_TXD;          //HSMC_RX _n[6] PIN_G8
+assign GPIO0_D[10] = JOY1_B2_P9;        //HSMC_TX _p[7] PIN_C3
+assign GPIO0_D[11] = JOY1_B1_P6;        //HSMC_RX _p[6] PIN_H8
+assign GPIO0_D[12] = JOY1_UP;           //HSMC_TX _n[6] PIN_D4
+assign GPIO0_D[13] = JOY1_DOWN;         //HSMC_RX _n[5] PIN_H7
+
+assign GPIO0_D[16] = JOY1_LEFT;         //HSMC_TX _p[6] PIN_E4
+assign GPIO0_D[17] = JOY1_RIGHT;        //HSMC_RX _p[5] PIN_J7
+assign GPIO0_D[18] = JOYX_SEL_O;        //HSMC_TX _n[5] PIN_E2
+assign GPIO0_D[19] = PMOD1[0];          //HSMC_RX _n[4] PIN_K8
+assign GPIO0_D[20] = PMOD1[1];          //HSMC_TX _p[5] PIN_E3
+assign GPIO0_D[21] = PMOD1[2];          //HSMC_RX _p[4] PIN_K7
+assign GPIO0_D[22] = PMOD1[3];          //HSMC_CLKOUT_n1  PIN_E6
+assign GPIO0_D[23] = PMOD1[4];          //HSMC_RX _n[3] PIN_J9
+assign GPIO0_D[24] = PMOD1[5];          //HSMC_CLKOUT_p1  PIN_E7
+assign GPIO0_D[25] = PMOD1[6];          //HSMC_RX _p[3] PIN_J10
+assign GPIO0_D[26] = PMOD1[7];          //HSMC_TX _n[4] PIN_C4
+
+
+endmodule
+
+
+
+
+
+
+  
+
+  
